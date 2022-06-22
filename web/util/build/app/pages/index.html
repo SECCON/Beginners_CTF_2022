@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <title>Ping check</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-body">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+          <ul>
+            <li><a href="#">Util</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Ping check</a></li>
+          </ul>
+        </nav>
+        <p class="title">Ping check</p>
+      </div>
+    </section>
+    <section class="px-5">
+      <div class="field">
+        <label class="label">IP address</label>
+        <div class="control">
+          <input id="addressTextField" class="input" type="text" name="address" placeholder="127.0.0.1">
+        </div>
+      </div>
+      <div class="control">
+        <button id="submit" type="submit" class="button is-link">check</button>
+      </div>
+      <div id="notify" class="mt-3"></div>
+    </section>
+  </div>
+
+  <script>
+    function send() {
+      var address = document.getElementById("addressTextField").value;
+
+      if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(address)) {
+        var json = {};
+        json.address = address
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/util/ping");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(json));
+
+        document.getElementById("notify").innerHTML = "<p>sending...</p>";
+
+        xhr.onload = function () {
+          if (xhr.status != 200) {
+            document.getElementById("notify").innerHTML =
+              "<p>Request Error : " + xhr.response + "</p>";
+          } else {
+            document.getElementById("notify").innerHTML =
+              "<pre><code>" + JSON.parse(xhr.response).result.replaceAll("\n", "<br />") + "</code></pre>";
+          }
+        };
+      } else {
+        document.getElementById("notify").innerHTML = "<p>Invalid IP address</p>";
+      }
+    }
+
+    var init = function () {
+      var btn = document.getElementById("submit");
+      var popup = function () {
+        send();
+      };
+      btn.addEventListener("click", popup, false);
+    };
+
+    window.addEventListener("load", init, false);
+
+  </script>
+</body>
+
+</html>

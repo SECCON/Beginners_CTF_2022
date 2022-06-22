@@ -1,0 +1,14 @@
+version: '3'
+services:
+  uhouho:
+    build:
+      context: .
+    working_dir: /home/pwn
+    container_name: uhouho
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "9999:9999"
+    entrypoint: /etc/init.sh
+    restart: always

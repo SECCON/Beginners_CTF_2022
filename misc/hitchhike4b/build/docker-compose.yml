@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  hitchhike4b:
+    build:
+      context: .
+    working_dir: /home/ctf/hitchhike4b
+    restart: always
+    ports:
+      - "55433:55433"

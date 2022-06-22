@@ -1,0 +1,98 @@
+version: "3"
+
+services:
+  app1:
+    build: ./app
+    healthcheck:
+      test: wget -q -O - http://localhost:8080/ || exit 1
+      start_period: "30s"
+      retries: 1
+      timeout: "2s"
+      interval: "15s"
+    ulimits:
+      nproc: 1000
+      nofile:
+        soft: 1000
+        hard: 1000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 64m
+    restart: always
+    labels:
+      - "autoheal=true"
+    networks:
+      - local
+  app2:
+    build: ./app
+    healthcheck:
+      test: wget -q -O - http://localhost:8080/ || exit 1
+      start_period: "30s"
+      retries: 1
+      timeout: "2s"
+      interval: "15s"
+    ulimits:
+      nproc: 1000
+      nofile:
+        soft: 1000
+        hard: 1000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 64m
+    restart: always
+    labels:
+      - "autoheal=true"
+    networks:
+      - local
+  app3:
+    build: ./app
+    healthcheck:
+      test: wget -q -O - http://localhost:8080/ || exit 1
+      start_period: "30s"
+      retries: 1
+      timeout: "2s"
+      interval: "15s"
+    ulimits:
+      nproc: 1000
+      nofile:
+        soft: 1000
+        hard: 1000
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 64m
+    restart: always
+    labels:
+      - "autoheal=true"
+    networks:
+      - local
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/seccon:/etc/nginx/certs
+    networks:
+      - local
+      - global
+
+  autoheal:
+    image: willfarrell/autoheal
+    tty: true
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=all
+      - AUTOHEAL_INTERVAL=5
+
+networks:
+  global: {}
+  local:
+    internal: true

@@ -1,0 +1,8 @@
+version: '3'
+services:
+  chal:
+    build: ./build
+    ports:
+      - 9777:9777
+    environment:
+      - FLAG=ctf4b{M4y_MT19937_b3_w17h_y0u}

@@ -1,0 +1,16 @@
+service misc
+{
+        disable = no
+        socket_type = stream
+        protocol = tcp
+        wait = no
+        user = misc
+        type = UNLISTED
+        bind = 0.0.0.0
+        port = 5000
+        server = /home/misc/redir.sh
+    per_source  = 3
+    rlimit_cpu  = 60
+    rlimit_as   = 1024M
+}
+

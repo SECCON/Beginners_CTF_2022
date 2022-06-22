@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  uwsgi:
+    build: ./app
+    environment:
+      TZ: "Asia/Tokyo"
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+#      - ./nginx/certs:/etc/nginx/certs
+    links:
+      - uwsgi
+    ports:
+       - "80:80"
+#      - "443:443"
+    environment:
+      TZ: "Asia/Tokyo"

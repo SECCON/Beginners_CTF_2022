@@ -1,0 +1,51 @@
+{{define "user"}}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <title>Top</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/bulma.min.css">
+</head>
+
+<body>
+  <section class="hero is-link">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a href="/logout" class="button is-dark">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="hero-body">
+      <p class="title">
+        Hello, {{.}}
+      </p>
+      <p class="subtitle">
+        Role : user
+      </p>
+    </div>
+  </section>
+  <div class="container mt-5">
+    <article class="message is-medium">
+      <div class="message-header">
+        <p>You are not admin user...</p>
+      </div>
+      <div class="message-body">
+        Sorry, I can't give you the FLAG.
+        If you want the FLAG, please login as admin user.
+      </div>
+    </article>
+  </div>
+</body>
+
+</html>
+{{end}}

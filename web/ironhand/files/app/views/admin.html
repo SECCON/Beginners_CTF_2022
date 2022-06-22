@@ -1,0 +1,50 @@
+{{define "admin"}}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <title>Top</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/bulma.min.css">
+</head>
+
+<body>
+  <section class="hero is-danger">
+    <div class="hero-head">
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-menu">
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a href="/logout" class="button is-dark">Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="hero-body">
+      <p class="title">
+        Hello, {{.username}}
+      </p>
+      <p class="subtitle">
+        Admin
+      </p>
+    </div>
+  </section>
+  <div class="container mt-5">
+    <article class="message is-medium">
+      <div class="message-header">
+        <p>You are admin!</p>
+      </div>
+      <div class="message-body">
+        {{.flag}}
+      </div>
+    </article>
+  </div>
+</body>
+
+</html>
+{{end}}

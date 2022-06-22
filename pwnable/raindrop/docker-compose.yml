@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  raindrop:
+    build:
+      context: .
+    restart: always
+    working_dir:  /home/pwn
+    container_name: raindrop_chall
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "9001:9001"
+    entrypoint: /etc/init.sh

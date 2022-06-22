@@ -1,0 +1,8 @@
+Hey! You are now going to try a simple problem using stack buffer overflow and ROP.
+
+I will list some keywords that will give you hints, so please look them up if you don't understand them.
+
+- stack buffer overflow
+- return oriented programming
+- calling conventions
+

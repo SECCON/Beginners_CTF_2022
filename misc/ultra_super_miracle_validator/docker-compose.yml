@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  super_ultra_hyper_miracle_validator:
+    build:
+      context: .
+    restart: always
+    working_dir:  /home/misc
+    container_name: super_ultra_hyper_miracle_validator_chall
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "5000:5000"
+    entrypoint: /etc/init.sh

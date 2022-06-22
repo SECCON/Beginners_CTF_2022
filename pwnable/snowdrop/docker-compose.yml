@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  snowdrop:
+    build:
+      context: .
+    restart: always
+    working_dir:  /home/pwn
+    container_name: snowdrop_chall
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "9002:9002"
+    entrypoint: /etc/init.sh

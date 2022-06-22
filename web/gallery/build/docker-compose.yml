@@ -1,0 +1,20 @@
+version: '3'
+services:
+  api:
+    container_name: "api"
+    build: ./backend
+    volumes:
+      - ./backend:/go/src/backend
+    restart: always
+  
+  nginx:
+    container_name: "nginx"
+    build: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - api
+    restart: always
+    volumes:
+      - /etc/seccon:/etc/nginx/certs

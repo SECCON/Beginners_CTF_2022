@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  php:
+    container_name: php
+    build: ./php
+    volumes:
+      - ./php.ini:/usr/local/etc/php/php.ini
+      - ./html:/var/www/html
+    restart: always
+  nginx:
+    container_name: "nginx"
+    build: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - php
+    restart: always
+    volumes:
+      - /etc/seccon:/etc/nginx/certs
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_ROOT_PASSWORD=serial_e689e496-2513-4b67-b22b-58b8ea7b9611
+      - MYSQL_DATABASE=serial
+      - MYSQL_USER=ctf4b
+      - MYSQL_PASSWORD=ctf4b
+    restart: always

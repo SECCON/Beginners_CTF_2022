@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  app:
+    build: ./app
+    environment:
+      - JWT_SECRET_KEY=U6hHFZEzYGwLEezWHMjf3QM83Vn2D13d
+  secret:
+    build: ./secret
+    environment:
+      - FLAG=ctf4b{i7s_funny_h0w_d1fferent_th1ng3_10ok_dep3ndin6_0n_wh3re_y0u_si7}
+  nginx:
+    build: ./nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /etc/seccon:/etc/nginx/certs

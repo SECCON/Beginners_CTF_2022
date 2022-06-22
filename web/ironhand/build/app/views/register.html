@@ -1,0 +1,40 @@
+{{define "login"}}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/bulma.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-body">
+        <p class="title">Login</p>
+      </div>
+    </section>
+    <section class="px-5">
+      <form method="POST" action="/login">
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control">
+            <input class="input" type="text" name="username" id="usernameTextField" placeholder="Username">
+          </div>
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-link">Login</button>
+        </div>
+      </form>
+      {{ if ne . "" }}
+      <div class="notification is-danger mt-4">
+        <p>{{.}}</p>
+      </div>
+      {{ end }}
+    </section>
+  </div>
+</body>
+
+</html>
+{{end}}

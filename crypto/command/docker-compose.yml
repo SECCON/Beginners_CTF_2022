@@ -1,0 +1,7 @@
+version: '3'
+services:
+    command:
+        build: ./build
+        restart: always
+        ports:
+            - 5555:5555

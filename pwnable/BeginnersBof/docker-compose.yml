@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  beginners_bof:
+    build:
+      context: .
+    restart: always
+    working_dir:  /home/pwn
+    container_name: beginners_bof_chall
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "9000:9000"
+    entrypoint: /etc/init.sh

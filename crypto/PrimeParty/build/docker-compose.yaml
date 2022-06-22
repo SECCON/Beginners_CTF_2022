@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  PrimeParty:
+    build:
+      context: .
+    restart: always
+    working_dir: /usr/src/app
+    ulimits:
+      nproc: 4096
+    ports:
+      - "1336:1336"
+

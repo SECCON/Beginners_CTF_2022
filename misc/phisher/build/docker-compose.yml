@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  phisher:
+    build:
+      context: .
+    env_file: .env
+    working_dir: /home/ctf/phisher
+    restart: always
+    ports:
+      - "44322:44322"
+    environment:
+      TZ: "Asia/Tokyo"

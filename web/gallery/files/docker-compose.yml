@@ -1,0 +1,19 @@
+version: '3'
+services:
+  api:
+    container_name: "api"
+    build: ./backend
+    volumes:
+      - ./backend:/go/src/backend
+    ports:
+      - 8080
+    restart: always
+  
+  nginx:
+    container_name: "nginx"
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    restart: always

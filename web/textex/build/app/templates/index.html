@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.3/lib/codemirror.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap" rel="stylesheet">
+    <style>
+    .CodeMirror {background: #f6f6f6;}
+    .topdf {
+        font-size: 1.3rem;
+        font-weight: 700;
+        padding: 1rem 3rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        color: #fff;
+        background-color: red;
+    }
+    h1 {
+        font-family: 'Gamja Flower', cursive;
+    }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.3/lib/codemirror.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.3/mode/stex/stex.js"></script>
+    <title>TexTex 🦋</title>
+</head>
+<body>
+
+<h1>Convert tex to pdf ✍</h1>
+
+<form method="POST" action="/pdf" >
+<textarea id="tex_code" name="tex_code">
+\documentclass{article}
+\begin{document}
+
+This is a sample.
+
+\end{document}
+</textarea>
+<input type="submit" class="topdf" value="toPDF">
+</form>
+<script type="text/javascript">
+var editor = CodeMirror.fromTextArea(document.getElementById("tex_code"), {
+    lineNumbers: true,
+});
+</script>
+
+
+</body>
+</html>
